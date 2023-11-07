@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do app</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body class="page">
+    <header>
+      <h1>Do these things</h1>
+    </header>
+    <main>
+      <section>
+        <form class="form">
+          <h2>
+            <label for="add-todo">Add todo</label>
+          </h2>
+          <input
+            class="form__input"
+            id="add-todo"
+            type="text"
+            autocomplete="off"
+          />
+          <button class="form__submit" type="submit">Add</button>
+        </form>
+        <div class="filters">
+          <h2>Filters</h2>
+          <ul class="filters__list">
+            <li>
+              <button class="filters__button" aria-pressed="true">All</button>
+            </li>
+            <li><button class="filters__button">Active</button></li>
+            <li><button class="filters__button">Completed</button></li>
+          </ul>
+        </div>
+      </section>
+      <section class="todos">
+        <h2 class="todos__counter">Showing X out of Y completed</h2>
+        <ul class="todos__list">
+          <template id="todo-template">
+            <li class="todo">
+              <label class="todo__label" for="">
+                <input class="todo__completed" id="" type="checkbox" />
+                <input class="todo__name-input" type="text" id="" />
+                <!-- Only necessary if we keep the edit button -->
+                <span class="todo__name"></span>
+              </label>
+              <ul class="todo__buttons">
+                <li>
+                  <button class="todo__edit-btn" type="button">Edit</button>
+                </li>
+                <li>
+                  <button class="todo__delete-btn" type="button">Delete</button>
+                </li>
+              </ul>
+            </li>
+          </template>
+        </ul>
+      </section>
+      <script src="./pages/index.js" defer type="module"></script>
+    </main>
+  </body>
+</html>

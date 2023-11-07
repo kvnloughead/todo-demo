@@ -1,0 +1,17 @@
+.todo__buttons {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  gap: 12px;
+  margin-left: 20px;
+}
+
+.todo__name-input {
+  visibility: hidden;
+  position: absolute;
+}
+
+.todo__name-input_visible {
+  visibility: visible;
+}
