@@ -1,11 +1,15 @@
+import FormValidator from "../components/FormValidator.js";
 import Todo from "../components/Todo.js";
-import { initialTodos } from "../utils/constants.js";
+import { initialTodos, formConfig } from "../utils/constants.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector(".popup");
 const addTodoForm = addTodoPopup.querySelector(".popup__form");
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
+
+const addTodoFormValidator = new FormValidator(formConfig, addTodoForm);
+addTodoFormValidator.enableValidation();
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
