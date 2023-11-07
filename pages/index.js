@@ -1,3 +1,5 @@
+import Todo from "../components/Todo.js";
+
 const initialTodos = [
   { id: 1, name: "Clone starting repo", completed: true },
   { id: 2, name: "Read instructions thoroughly", completed: false },
@@ -8,7 +10,6 @@ const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector(".popup");
 const addTodoForm = addTodoPopup.querySelector(".popup__form");
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
-const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
 const openModal = (modal) => {
@@ -20,9 +21,8 @@ const closeModal = (modal) => {
 };
 
 const generateTodo = (data) => {
-  const todoElement = todoTemplate.content.firstElementChild.cloneNode(true);
-  const todoNameEl = todoElement.querySelector(".todo__name");
-  todoNameEl.textContent = data.name;
+  const todo = new Todo(data, "#todo-template");
+  const todoElement = todo.getView();
   return todoElement;
 };
 
