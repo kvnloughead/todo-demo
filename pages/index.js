@@ -4,4 +4,15 @@ const initialTodos = [
   { id: 3, name: "Complete project", completed: false },
 ];
 
+const addTodoButton = document.querySelector(".button_action_add");
+const addTodoPopup = document.querySelector(".popup");
+
+const openModal = (modal) => {
+  modal.classList.add("popup_visible");
+};
+
+addTodoButton.addEventListener("click", () => {
+  openModal(addTodoPopup);
+});
+
 initialTodos.forEach((item) => {});

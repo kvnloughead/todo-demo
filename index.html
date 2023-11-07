@@ -13,16 +13,39 @@
     <main>
       <section>
         <form class="form">
-          <h2>
-            <label for="add-todo">Add todo</label>
-          </h2>
-          <input
-            class="form__input"
-            id="add-todo"
-            type="text"
-            autocomplete="off"
-          />
-          <button class="form__submit" type="submit">Add</button>
+          <h2>Add todo</h2>
+          <button class="button button_action_add"></button>
+          <div class="popup" id="add-todo-popup">
+            <div class="popup__content">
+              <button
+                aria-label="Close modal"
+                class="popup__close"
+                type="button"
+              ></button>
+              <h3 class="popup__title">Add new todo</h3>
+              <form
+                class="popup__form"
+                name="add-todo-form"
+                id="add-todo-form"
+                novalidate
+              >
+                <label class="popup__label">
+                  <input
+                    class="popup__input"
+                    id="todo-name"
+                    maxlength="40"
+                    minlength="2"
+                    name="name"
+                    placeholder="What needs to be done?"
+                    required
+                    type="text"
+                  />
+                  <span class="popup__error" id="todo-name-error"></span>
+                </label>
+                <button class="button popup__button" type="submit">Save</button>
+              </form>
+            </div>
+          </div>
         </form>
       </section>
       <section class="todos">

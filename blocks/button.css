@@ -1,0 +1,11 @@
+.button_action_add {
+  width: 150px;
+  height: 50px;
+  background: #000 url("../images/add-icon.svg") center no-repeat;
+  background-size: 22px;
+  border-radius: 2px;
+  border: 2px solid #fff;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-left: auto;
+}
