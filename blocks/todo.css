@@ -10,8 +10,14 @@
 .todo__name-input {
   visibility: hidden;
   position: absolute;
+  left: 0;
 }
 
 .todo__name-input_visible {
   visibility: visible;
+}
+
+.todo__row {
+  display: flex;
+  position: relative;
 }

@@ -51,11 +51,25 @@
         <ul class="todos__list">
           <template id="todo-template">
             <li class="todo">
-              <label class="todo__label" for="">
-                <input class="todo__completed" id="" type="checkbox" />
-                <input class="todo__name-input" type="text" id="" />
-                <span class="todo__name"></span>
-              </label>
+              <form class="todo__form">
+                <div class="todo__row">
+                  <label class="todo__label todo__label-checkbox" for="">
+                    <input class="todo__completed" id="" type="checkbox" />
+                  </label>
+                  <span class="todo__name"></span>
+                  <label for="">
+                    <input class="todo__name-input" type="text" id="" />
+                  </label>
+                  <label for="">
+                    <input
+                      type="date"
+                      id="deadline"
+                      name="deadline"
+                      min="2018-01-01"
+                    />
+                  </label>
+                </div>
+              </form>
               <ul class="todo__buttons">
                 <li>
                   <button class="todo__edit-btn" type="button">Edit</button>
