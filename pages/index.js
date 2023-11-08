@@ -1,12 +1,11 @@
 import FormValidator from "../components/FormValidator.js";
 import Todo from "../components/Todo.js";
 import TodoCounter from "../components/TodoCounter.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import { initialTodos, formConfig } from "../utils/constants.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
-const addTodoPopup = document.querySelector(".popup");
-const addTodoForm = addTodoPopup.querySelector(".popup__form");
-const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
+const addTodoForm = document.querySelector("#add-todo-form");
 const todosList = document.querySelector(".todos__list");
 
 const addTodoFormValidator = new FormValidator(formConfig, addTodoForm);
@@ -21,14 +20,6 @@ const handleDeleted = (completed) => {
   todoCounter.updateTotal({ deleted: true, completed });
 };
 
-const openModal = (modal) => {
-  modal.classList.add("popup_visible");
-};
-
-const closeModal = (modal) => {
-  modal.classList.remove("popup_visible");
-};
-
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleChecked, handleDeleted);
   const todoElement = todo.getView();
@@ -36,18 +27,13 @@ const generateTodo = (data) => {
 };
 
 addTodoButton.addEventListener("click", () => {
-  openModal(addTodoPopup);
+  addTodoPopup.open();
 });
 
-addTodoCloseBtn.addEventListener("click", () => {
-  closeModal(addTodoPopup);
-});
-
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const todo = generateTodo({ name: evt.target["todo-name"].value });
+const handleFormSubmit = (data) => {
+  const todo = generateTodo(data);
   todosList.append(todo);
-  closeModal(addTodoPopup);
+  addTodoPopup.close();
 
   // Increment counter
   todoCounter.updateTotal({ deleted: false, completed: false });
@@ -55,7 +41,13 @@ addTodoForm.addEventListener("submit", (evt) => {
   // Resetting the validation is optional
   addTodoFormValidator.disableSubmitButton();
   addTodoForm.reset();
+};
+
+const addTodoPopup = new PopupWithForm({
+  popupSelector: "#add-todo-popup",
+  handleFormSubmit,
 });
+addTodoPopup.setEventListeners();
 
 initialTodos.forEach((item) => {
   const todo = generateTodo(item);
