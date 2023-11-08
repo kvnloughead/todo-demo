@@ -1,18 +1,21 @@
 class Todo {
-  constructor(data, selector) {
+  constructor(data, selector, handleChecked, handleDeleted) {
     this._checked = data.completed;
     this._name = data.name;
     this._selector = selector;
+    this._handleChecked = handleChecked;
+    this._handleDeleted = handleDeleted;
   }
 
   _setEventListeners() {
     this._deleteBtnEl.addEventListener("click", () => {
       this._element.remove();
+      this._handleDeleted(this._checked);
     });
 
-    // Probably not necessary at this point, until introduce todoCounter
     this._checkboxEl.addEventListener("change", () => {
       this._checked = !this._checked;
+      this._handleChecked(this._checked);
     });
 
     // Two listeners needed for edit button
@@ -40,9 +43,8 @@ class Todo {
     this._nameInputEl = this._element.querySelector(".todo__name-input");
     this._nameEl.textContent = this._name;
 
-    // Check button related. Possibly not necessary at this point
     this._checkboxEl = this._element.querySelector(".todo__completed");
-    this._checkboxEl.checked = this._completed;
+    this._checkboxEl.checked = this._checked;
 
     this._setEventListeners();
     return this._element;

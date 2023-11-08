@@ -1,5 +1,6 @@
 import FormValidator from "../components/FormValidator.js";
 import Todo from "../components/Todo.js";
+import TodoCounter from "../components/TodoCounter.js";
 import { initialTodos, formConfig } from "../utils/constants.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
@@ -11,6 +12,15 @@ const todosList = document.querySelector(".todos__list");
 const addTodoFormValidator = new FormValidator(formConfig, addTodoForm);
 addTodoFormValidator.enableValidation();
 
+const todoCounter = new TodoCounter(initialTodos, ".todos__counter");
+const handleChecked = (checked) => {
+  todoCounter.updateCompleted(checked);
+};
+
+const handleDeleted = (completed) => {
+  todoCounter.updateTotal({ deleted: true, completed });
+};
+
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
 };
@@ -20,7 +30,7 @@ const closeModal = (modal) => {
 };
 
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", handleChecked, handleDeleted);
   const todoElement = todo.getView();
   return todoElement;
 };
@@ -38,6 +48,9 @@ addTodoForm.addEventListener("submit", (evt) => {
   const todo = generateTodo({ name: evt.target["todo-name"].value });
   todosList.append(todo);
   closeModal(addTodoPopup);
+
+  // Increment counter
+  todoCounter.updateTotal({ deleted: false, completed: false });
 
   // Resetting the validation is optional
   addTodoFormValidator.disableSubmitButton();
